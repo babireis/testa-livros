@@ -1,30 +1,29 @@
-require_relative '../livro'
+require_relative '../pages/submarino_po'
+require_relative '../pages/cultura_po'
+require_relative '../pages/amazon_po'
 
-describe 'Testa-Livros' do
+describe 'Testa-Livros', :testa_livros do
 
     before(:each) do
+        @submarino = SubmarinoPage.new
+        @cultura = CulturaPage.new
+        @amazon = AmazonPage.new
         @livro = Livro.new
+        @submarino.encontra_livro(@livro)
     end
 
-    it 'Busca livros' do
-        visit 'https://www.submarino.com.br/'
-        click_link 'Livros'
-      
-        livros = all(:css, 'img[alt^=Livro]')
-        livros[0].click  
+    it 'Busca livro na Livraria Cultura', :cultura do        
+        expect(@cultura.busca_livro(@livro)).to include @livro.autor
+        puts @cultura.busca_livro(@livro)
+    end
 
-       @livro.titulo = find('#product-name-default').text
-       puts @livro.titulo
-
-       @livro.autor = find('a[class^=author-name] span[class^=text]').text
-       puts @livro.autor
-
-       ficha = find('div[id=info-section] table tbody tr', text: 'ISBN-10')
-       @livro.isbn = ficha.all('td')[1].text
-       puts isbn
+    it 'Busca livro na Amazon', :amazon do        
+        expect(@amazon.busca_livro).to include @livro.autor
+        puts @amazon.busca_livro(@livro)
     end
 
     after(:each) do
+        sleep 2
         Capybara.current_session.driver.quit  
     end
 
