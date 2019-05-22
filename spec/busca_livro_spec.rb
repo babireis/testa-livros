@@ -13,18 +13,10 @@ describe 'Testa-Livros', :testa_livros do
     end
 
     it 'Busca livro na Livraria Cultura', :cultura do        
-        expect(@cultura.busca_livro(@livro)).to include @livro.autor
-        puts @cultura.busca_livro(@livro)
+        expect(@cultura.busca_livro(@livro)).to include @livro.autor 
     end
 
     it 'Busca livro na Amazon', :amazon do        
-        expect(@amazon.busca_livro).to include @livro.autor
-        puts @amazon.busca_livro(@livro)
+        expect(@amazon.busca_livro(@livro)).to include @livro.autor     
     end
-
-    after(:each) do
-        sleep 2
-        Capybara.current_session.driver.quit  
-    end
-
 end

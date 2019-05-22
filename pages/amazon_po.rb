@@ -8,7 +8,7 @@ class AmazonPage
     end
 
     def busca_livro(livro)
-        acessa
+        self.acessa
         find('input[id=Ntt-responsive]').set livro.isbn
         find('#search-box-submit').click 
         find('#results div[class*=author-title-ev]').text        
