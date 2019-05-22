@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
-gem 'capybara'
-gem 'rspec'
-gem 'selenium-webdriver'
+gem 'capybara', ' 3.10'
+gem 'rspec', '3.8'
+gem 'selenium-webdriver', '3.14.0'
 
-# gem "rails"
+
