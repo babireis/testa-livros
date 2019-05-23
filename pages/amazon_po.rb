@@ -9,9 +9,17 @@ class AmazonPage
 
     def busca_livro(livro)
         self.acessa
-        find('input[id=Ntt-responsive]').set livro.isbn
-        find('#search-box-submit').click 
-        find('#results div[class*=author-title-ev]').text        
+        find('#twotabsearchtextbox').set livro.isbn
+        find('input[type=submit]').click 
+        within('#search') do
+           links = all('a[href*="keywords"')
+           links[0].click
+        end
+
+        within('#bylineInfo') do
+            autor = all('a[href*="field-author"]')
+            autor[0].text            
+        end
     end
 
 end

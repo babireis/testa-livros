@@ -18,12 +18,11 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
 
-  config.before(:example) do 
-    page.current_window.resize_to(1280,800)
+  config.before(:all) do 
+    page.current_window.resize_to(1200, 800)
   end
 
   config.after(:example) do |e|
-    sleep 2
     nome = e.description.gsub(/[^A-Za-z0-9 ]/, '').tr(' ','_')
     page.save_screenshot('log/'+ nome +'.png')    
     Capybara.current_session.driver.quit  
