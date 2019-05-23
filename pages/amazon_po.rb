@@ -17,8 +17,9 @@ class AmazonPage
         end
 
         within('#bylineInfo') do
-            autor = all('a[href*="field-author"]')
-            autor[0].text            
+            autores = all('a[href*="field-author"]')
+            a = autores[0].text          
+            autor = a.gsub(/[^A-Za-z0-9 ]/, '').tr('.','')  
         end
     end
 

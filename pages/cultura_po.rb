@@ -11,7 +11,9 @@ class CulturaPage
         acessa
         find('input[id=Ntt-responsive]').set livro.isbn
         find('#search-box-submit').click 
-        find('#results div[class*=author-title-ev]').text        
+        a = find('#results div[class*=author-title-ev]').text 
+        autor = a.gsub(/[^A-Za-z0-9 ]/, '').tr('.','')
+       
     end
 
 end
